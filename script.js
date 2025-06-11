@@ -75,10 +75,10 @@ function cargarServicios() {
         price.textContent = `$${servicio.precio_mensual}/mes`;
         card.appendChild(price);
 
-        // Botón para añadir al carrito
+        // Botón para comprar vía WhatsApp
         const button = document.createElement('button');
-        button.textContent = 'Añadir al carrito';
-        button.addEventListener('click', () => anadirAlCarrito(servicio));
+        button.textContent = 'Comprar en WhatsApp';
+        button.addEventListener('click', () => abrirWhatsApp(servicio));
         card.appendChild(button);
 
         // Insertar tarjeta en el contenedor
@@ -87,11 +87,13 @@ function cargarServicios() {
 }
 
 /**
- * Simula la acción de añadir un servicio al carrito.
- * Por simplicidad, solo muestra una alerta en pantalla.
+ * Abre una ventana de WhatsApp con un mensaje predefinido
+ * para iniciar la compra del servicio seleccionado.
  */
-function anadirAlCarrito(servicio) {
-    alert(`${servicio.nombre} añadido al carrito.`);
+function abrirWhatsApp(servicio) {
+    const mensaje = `Hola, quiero comprar el servicio ${servicio.nombre}`;
+    const url = `https://wa.me/51935686086?text=${encodeURIComponent(mensaje)}`;
+    window.open(url, '_blank');
 }
 
 // Ejecutar la carga de servicios una vez el DOM esté listo
